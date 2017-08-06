@@ -1,9 +1,11 @@
 <?php
 
-//echo '<pre>';
-//var_dump($_POST);
+
+//echo "<pre>";
+//print_r($_POST);
 //echo '</pre>';
 
+//
 $host = 'localhost';
 $db = 'burgers-shop';
 $user = 'root';
@@ -11,13 +13,6 @@ $pass = '';
 $charset = 'utf8';
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $pdo = new PDO($dsn, $user, $pass);
-
-//echo 'Дані замовлення <br>';
-//foreach ($_POST as $key => $value) {
-//	echo $key . ' - ' . $value . '<br>';
-//}
-//echo "<pre>";
-//print_r($_POST);
 
 if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 	empty($_POST['email']) || empty($_POST['Улица']) ||
@@ -27,7 +22,6 @@ if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 	echo '<b>Для оформления заказа необходимо заполнить следующие поля:</b><br>';
 //	$cont = count($_POST);
 //	$i = 0;
-
 	foreach ($_POST as $key => $value) {
 //		if ($cont === $i) {
 //			echo $key;
@@ -37,8 +31,50 @@ if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 		}
 //		$i++;
 	}
-} else {
-
+	die();
+} elseif (!empty($_POST['Имя']) && !empty($_POST['Телефон']) &&
+	!empty($_POST['email']) && !empty($_POST['Улица']) &&
+	!empty($_POST['Дом']) && !empty($_POST['Корпус']) &&
+	!empty($_POST['Квартира']) && !empty($_POST['Этаж']) &&
+	!empty($_POST['Комментарий'])) {
+	switch (true) {
+		case preg_match('|[!@#$%^&*()_\-+=\|\\\[\{\}\.\,\?A-z]|', $_POST['Имя']):
+			echo 'Поле "Имя" должны быть только буквы';
+			die();
+			break;
+		case empty(preg_match('|^\+7 \(\d{3}\) \d{3} \d{2} \d{2}$|', $_POST['Телефон'])):
+			echo 'Поле "Телефон" должно быть заполнено и иметь подобный вид: +7 (777) 777 77 77';
+			die();
+			break;
+		case empty(preg_match('|[a-z0-9]+[_a-z0-9\.-]*[a-z0-9]+@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})|', $_POST['email'])):
+			echo 'email введен неверно';
+			die();
+			break;
+		case preg_match('|[!@#$%^&*()_\-+=\|\\\[\{\}\.\,\?A-z]|', $_POST['Улица']):
+			echo 'Поле "Улица" должны быть только русские буквы';
+			die();
+			break;
+		case preg_match('|\D|', $_POST['Дом']):
+			echo 'Поле "Дом" должны быть только числа';
+			die();
+			break;
+		case preg_match('|[!@#$%^&*()_\-+=\|\\\[\{\}\.\,\?]|', $_POST['Корпус']):
+			echo 'Поле "Корпус" содержит нежелательные символы';
+			die();
+			break;
+		case preg_match('|\D|', $_POST['Квартира']):
+			echo 'Поле "Квартира" должны быть только числа';
+			die();
+			break;
+		case preg_match('|\D|', $_POST['Этаж']):
+			echo 'Поле "Этаж" должны быть только числа';
+			die();
+			break;
+		case preg_match('|[!@#$%^&*()_\-+=\|\\\[\{\}\.\,\?A-z]|', $_POST['Комментарий']):
+			echo 'Поле "Комментарий" должны быть только русские буквы';
+			die();
+			break;
+	}
 // Проверка пользователя
 	$email_check = $pdo->prepare("SELECT * FROM users WHERE email = :email");
 	$email_check->execute([
@@ -118,6 +154,7 @@ if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 	echo "</table>";
 	die();
 }
-////echo "<pre>";
-////print_r($data);
-////print_r($check_data);
+
+//echo "<pre>";
+//print_r($data);
+//print_r($check_data);
