@@ -1,0 +1,94 @@
+.order-link {
+    width: auto;
+    border: none;
+    margin-left: 10px;
+    padding: .5625rem;
+}
+
+/* POPUP */
+.f-popup__bg {
+    position: fixed;
+    display: flex;
+    bottom: 0;
+    right: 0;
+    background: rgba(47, 50, 52, .92);
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.f-popup__main {
+    min-width: 600px;
+    min-height: 300px;
+    max-width: 85%;
+    max-height: 75%;
+    background: white;
+    margin: auto;
+    padding: 1.5625rem 1.25rem;
+    color: #444;
+    position: relative;
+    overflow: auto;
+    line-height: 2em;
+}
+
+.f-popup__close {
+    width: .9375rem;
+    height: .9375rem;
+    display: block;
+    position: absolute;
+    right: 1.25rem;
+    top: 1.25rem;
+    opacity: .7;
+    transition: .3s;
+}
+
+.f-popup__title {
+    font-family: Gagalin-Regular, Helvetica, sans-serif;
+    font-size: .875rem;
+    text-transform: uppercase;
+    margin-bottom: 1.5625rem;
+}
+
+.f-popup__content {
+    font-size: .875rem;
+    font-family: Ubuntu, Helvetica, sans-serif;
+    font-weight: 300;
+}
+
+table {
+    width: 100%; /* Ширина таблицы */
+    border: 4px double black; /* Рамка вокруг таблицы */
+    border-collapse: collapse; /* Отображать только одинарные линии */
+}
+
+table {
+    width: 100%; /* Ширина таблицы */
+    border: 4px double black; /* Рамка вокруг таблицы */
+    border-collapse: collapse; /* Отображать только одинарные линии */
+}
+
+th {
+    text-align: left; /* Выравнивание по левому краю */
+    background: #ccc; /* Цвет фона ячеек */
+    padding: 5px; /* Поля вокруг содержимого ячеек */
+    border: 1px solid black; /* Граница вокруг ячеек */
+}
+
+td {
+    padding: 5px; /* Поля вокруг содержимого ячеек */
+    border: 1px solid black; /* Граница вокруг ячеек */
+}
+
+.registration-ok {
+    font-size: 1.5em;
+    color: #8ac03e;
+}
+
+.registration-no {
+    font-size: 1.5em;
+    color: red;
+}
+
+.your-order {
+    font-size: 1.2em;
+}
