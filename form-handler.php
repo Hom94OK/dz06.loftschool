@@ -4,13 +4,12 @@
 //echo "<pre>";
 //print_r($_POST);
 //echo '</pre>';
-require_once ("connect-pdo.php");
+require_once("connect-pdo.php");
 
 if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 	empty($_POST['email']) || empty($_POST['Улица']) ||
-	empty($_POST['Дом']) || empty($_POST['Корпус']) ||
-	empty($_POST['Квартира']) || empty($_POST['Этаж']) ||
-	empty($_POST['Комментарий'])) {
+	empty($_POST['Дом']) || empty($_POST['Квартира']) ||
+	empty($_POST['Этаж']) || empty($_POST['Комментарий'])) {
 	echo '<b>Для оформления заказа необходимо заполнить следующие поля:</b><br>';
 //	$cont = count($_POST);
 //	$i = 0;
@@ -26,9 +25,8 @@ if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 	die();
 } elseif (!empty($_POST['Имя']) && !empty($_POST['Телефон']) &&
 	!empty($_POST['email']) && !empty($_POST['Улица']) &&
-	!empty($_POST['Дом']) && !empty($_POST['Корпус']) &&
-	!empty($_POST['Квартира']) && !empty($_POST['Этаж']) &&
-	!empty($_POST['Комментарий'])) {
+	!empty($_POST['Дом']) && !empty($_POST['Квартира']) &&
+	!empty($_POST['Этаж']) && !empty($_POST['Комментарий'])) {
 	switch (true) {
 		case preg_match('|[!@#$%^&*()_\-+=\|\\\[\{\}\.\,\?A-z]|', $_POST['Имя']):
 			echo 'Поле "Имя" должны быть только буквы';
@@ -147,15 +145,16 @@ if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 
 	$f = 'Спасибо - это ваш первый заказ';
 	$s = 'Спасибо! Это уже 555 заказ';
-	$mail = mail("khom.taras@gmail.com", "Ваш заказ будет доставлен по адресу:\r\n
- 	Улица, Дом, Корпус, Квартира, Этаж ", " DarkBeefBurger за 500 рублей, 1 шт");
+
+	$str = 'Ваш заказ будет доставлен по адресу: ул. ' .  $_POST['Улица'] . ' ' . $_POST['Дом'] .  $_POST['Корпус'] . ' кв.' .  $_POST['Квартира'] . ' этаж ' .  $_POST['Этаж'];
+
+	$mail = mail("khom.taras@gmail.com", $str, "DarkBeefBurger за 500 рублей, 1 шт");
 	if ($mail) {
-		echo "messege acepted for delivery";
+		echo "Сообщение принято для доставки проверьте почту.";
 	} else {
-		echo "some error happen";
+		echo "Произошла какая-то ошибка при отправке.";
+//		Збаразбка 57А кв. 54 этаж 4
 	}
-
-
 	die();
 }
 
