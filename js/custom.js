@@ -1,6 +1,5 @@
 $("#order__form-button").on("click", function (e) {
     e.preventDefault();
-    // var dsa = 'tlkasn;lkdsa';
     $(this).closest("body").find("#f-order").css({
         'display': 'flex'
     });
