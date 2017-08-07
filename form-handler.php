@@ -4,7 +4,7 @@
 //echo "<pre>";
 //print_r($_POST);
 //echo '</pre>';
-require_once ('connect-pdo.php');
+require_once ("connect-pdo.php");
 
 if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 	empty($_POST['email']) || empty($_POST['Улица']) ||
@@ -144,11 +144,17 @@ if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 		echo '</tr>';
 	}
 	echo "</table>";
-//
-//	$f = 'Спасибо - это ваш первый заказ';
-//	$s = 'Спасибо! Это уже 555 заказ';
-//	mail("khom.taras@gmail.com", "Ваш заказ будет доставлен по адресу:\r\n
-// 	Улица, Дом, Корпус, Квартира, Этаж ", " DarkBeefBurger за 500 рублей, 1 шт");
+
+	$f = 'Спасибо - это ваш первый заказ';
+	$s = 'Спасибо! Это уже 555 заказ';
+	$mail = mail("khom.taras@gmail.com", "Ваш заказ будет доставлен по адресу:\r\n
+ 	Улица, Дом, Корпус, Квартира, Этаж ", " DarkBeefBurger за 500 рублей, 1 шт");
+	if ($mail) {
+		echo "messege acepted for delivery";
+	} else {
+		echo "some error happen";
+	}
+
 
 	die();
 }
