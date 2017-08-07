@@ -37,7 +37,6 @@
                     </div>
                     <div class="header__links">
                         <a class="order-link btn" href="#order">Заказать</a>
-                        <button class="order-link btn" id="authorization">Авторизация</button>
                         <a class="hamburger-menu-link" href="">
                             <div class="hamburger-menu-link__bars"></div>
                         </a>
@@ -531,7 +530,7 @@
                                     </label>
                                 </div>
                                 <div class="order__form-row">
-                                    <button class="order__form-button" type="submit">Заказать</button>
+                                    <button id="order__form-button" class="order__form-button" type="submit">Заказать</button>
                                     <!--<input class="order__form-button" name="" type="submit" value="Заказать">-->
                                     <input class="order__form-button order__form-button_reset" name="" type="reset"
                                            value="Очистить">
@@ -635,24 +634,6 @@
         <a class="status-popup__close btn" href="#">Закрыть</a>
     </div>
 </div>
-<div class="f-popup__bg" id="f-authorization">
-    <div class="f-popup__main">
-        <a class="f-popup__close" href="#">
-            <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
-                <path fill-rule="evenodd" clip-rule="evenodd" fill="#E45028"
-                      d="M9.831 7.494l4.673-4.673A1.651 1.651 0 1 0 12.167.484L7.494 5.157 2.82.483A1.653 1.653 0 0 0 .483 2.82l4.673 4.673-4.673 4.673a1.653 1.653 0 0 0 2.337 2.337L7.493 9.83l4.673 4.673c.646.646 1.691.646 2.337 0s.646-1.691 0-2.337L9.831 7.494z"/>
-            </svg>
-        </a>
-        <div class="f-popup__title">Авторизация в системе</div>
-        <div class="f-popup__content">
-            <form>
-                <label for="r-email"></label>
-                <input id="r-email" class="order__form-input" name="r-email" type="email" placeholder="email">
-                <button type="submit">Войти</button>
-            </form>
-        </div>
-    </div>
-</div>
 <div class="f-popup__bg" id="f-order">
     <div class="f-popup__main">
         <a class="f-popup__close" href="#">
@@ -671,6 +652,6 @@
 <script src="./js/vendors.min.js"></script>
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 <script src="./js/main.min.js"></script>
-<script src="/js/popup.js"></script>
+<script src="/js/custom.js"></script>
 </body>
 </html>
