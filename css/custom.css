@@ -8,7 +8,6 @@
 /* POPUP */
 .f-popup__bg {
     position: fixed;
-    display: flex;
     bottom: 0;
     right: 0;
     background: rgba(47, 50, 52, .92);
