@@ -463,7 +463,7 @@
                             <div class="order__form-row order__form-row_double">
                                 <label class="order__form-block">
                                     <div class="order__form-label">Имя</div>
-                                    <input class="order__form-input" name="Имя" type="text" placeholder="">
+                                    <input class="order__form-input" name="Имя" type="text" placeholder="" required>
                                 </label>
                                 <label class="order__form-block">
                                     <div class="order__form-label">Телефон</div>
@@ -473,17 +473,17 @@
                             <div class="order__form-row order__form-row_double">
                                 <label class="order__form-block">
                                     <div class="order__form-label">email</div>
-                                    <input class="order__form-input" name="email" type="email" placeholder="">
+                                    <input class="order__form-input" name="email" type="email" placeholder="" required>
                                 </label>
                                 <label class="order__form-block">
                                     <div class="order__form-label">Улица</div>
-                                    <input class="order__form-input" name="Улица" type="text" placeholder="">
+                                    <input class="order__form-input" name="Улица" type="text" placeholder="" required>
                                 </label>
                             </div>
                             <div class="order__form-row order__form-row_quatro">
                                 <label class="order__form-block">
                                     <div class="order__form-label">Дом</div>
-                                    <input class="order__form-input" name="Дом" type="number" placeholder="">
+                                    <input class="order__form-input" name="Дом" type="number" placeholder="" required>
                                 </label>
                                 <label class="order__form-block">
                                     <div class="order__form-label">Корпус</div>
@@ -504,14 +504,14 @@
                                 <label class="order__form-block">
                                     <div class="order__form-label">Комментарий</div>
                                     <textarea class="order__form-input order__form-input_textarea"
-                                              name="Комментарий"></textarea>
+                                              name="Комментарий" required></textarea>
                                 </label>
                             </div>
                             <div class="order__form-buttons">
                                 <div class="order__form-row">
                                     <label class="order__radio">
                                         <input class="order__radio-elem" name="payment" type="radio"
-                                               value="Потребуется сдача">
+                                               value="Потребуется сдача" checked="checked">
                                         <div class="order__radio-fake"></div>
                                         <div class="order__radio-title">Потребуется сдача</div>
                                     </label>
@@ -634,13 +634,13 @@
     </div>
 </div>
 <div class="f-popup__bg" id="f-order">
+    <a class="f-popup__close" href="#">
+        <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+            <path fill-rule="evenodd" clip-rule="evenodd" fill="#E45028"
+                  d="M9.831 7.494l4.673-4.673A1.651 1.651 0 1 0 12.167.484L7.494 5.157 2.82.483A1.653 1.653 0 0 0 .483 2.82l4.673 4.673-4.673 4.673a1.653 1.653 0 0 0 2.337 2.337L7.493 9.83l4.673 4.673c.646.646 1.691.646 2.337 0s.646-1.691 0-2.337L9.831 7.494z"/>
+        </svg>
+    </a>
     <div class="f-popup__main">
-        <a class="f-popup__close" href="#">
-            <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
-                <path fill-rule="evenodd" clip-rule="evenodd" fill="#E45028"
-                      d="M9.831 7.494l4.673-4.673A1.651 1.651 0 1 0 12.167.484L7.494 5.157 2.82.483A1.653 1.653 0 0 0 .483 2.82l4.673 4.673-4.673 4.673a1.653 1.653 0 0 0 2.337 2.337L7.493 9.83l4.673 4.673c.646.646 1.691.646 2.337 0s.646-1.691 0-2.337L9.831 7.494z"/>
-            </svg>
-        </a>
         <div class="f-popup__title">Ваши последние заказы</div>
         <div class="f-popup__content">
             Загрузка ...

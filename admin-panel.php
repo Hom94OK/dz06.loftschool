@@ -12,12 +12,11 @@
 <?php
 require_once('connect-pdo.php');
 
-echo 'Cписок всех зарегистрированных пользователей:';
 $result = $pdo->prepare("SELECT * FROM `burgers-shop`.users");
 $result->execute();
-$data = $result->fetchAll(PDO::FETCH_NUM);
+$data = $result->fetchAll(PDO::FETCH_ASSOC);
 
-echo '<b class="your-order">Ваши заказы:</b><table>';
+echo '<table>';
 echo '<tr>';
 foreach ($data[0] as $key => $value) {
 	echo '<th>' . $key . '</th>';
@@ -34,14 +33,11 @@ echo "</table>";
 ?>
 <h2>Список всех заказов:</h2>
 <?php
-require_once('connect-pdo.php');
-
-echo 'Cписок всех зарегистрированных пользователей:';
-$result = $pdo->prepare("SELECT * FROM `burgers-shop`.`order`");
+$result = $pdo->prepare("SELECT * FROM `burgers-shop`.orders");
 $result->execute();
-$data = $result->fetchAll(PDO::FETCH_NUM);
+$data = $result->fetchAll(PDO::FETCH_ASSOC);
 
-echo '<b class="your-order">Ваши заказы:</b><table>';
+echo '<table>';
 echo '<tr>';
 foreach ($data[0] as $key => $value) {
 	echo '<th>' . $key . '</th>';

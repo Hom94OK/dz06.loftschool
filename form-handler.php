@@ -8,25 +8,15 @@ require_once("connect-pdo.php");
 
 if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 	empty($_POST['email']) || empty($_POST['Улица']) ||
-	empty($_POST['Дом']) || empty($_POST['Квартира']) ||
-	empty($_POST['Этаж']) || empty($_POST['Комментарий'])) {
-	echo '<b>Для оформления заказа необходимо заполнить следующие поля:</b><br>';
-//	$cont = count($_POST);
-//	$i = 0;
-	foreach ($_POST as $key => $value) {
-//		if ($cont === $i) {
-//			echo $key;
-//		} else
-		if (empty($value)) {
-			echo $key . ', ';
-		}
-//		$i++;
-	}
+	empty($_POST['Дом']) || empty($_POST['Комментарий'])) {
+
+	echo '<b class="error-message">Заполните обязательные поля.</b>';
 	die();
-} elseif (!empty($_POST['Имя']) && !empty($_POST['Телефон']) &&
-	!empty($_POST['email']) && !empty($_POST['Улица']) &&
-	!empty($_POST['Дом']) && !empty($_POST['Квартира']) &&
-	!empty($_POST['Этаж']) && !empty($_POST['Комментарий'])) {
+
+} elseif (!empty($_POST['Имя']) || !empty($_POST['Телефон']) ||
+	!empty($_POST['email']) || !empty($_POST['Улица']) ||
+	!empty($_POST['Дом']) || !empty($_POST['Корпус']) || !empty($_POST['Квартира']) ||
+	!empty($_POST['Этаж']) || !empty($_POST['Комментарий'])) {
 	switch (true) {
 		case preg_match('|[!@#$%^&*()_\-+=\|\\\[\{\}\.\,\?A-z]|', $_POST['Имя']):
 			echo 'Поле "Имя" должны быть только буквы';
@@ -93,6 +83,7 @@ if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 		]);
 		$check_data = $email_check->fetch(PDO::FETCH_ASSOC);
 		$user_id = $check_data['ID пользователя'];
+		$user_email = $check_data['email'];
 
 		echo '<strong class="registration-no">Вы не зарегистрированы.</strong><br><b>Вам присвоено ID пользователя:</b> ';
 		print_r($user_id);
@@ -101,7 +92,7 @@ if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 
 
 // Заносим в базу заказ
-	$order_bd = $pdo->prepare("INSERT INTO `burgers-shop`.`order`
+	$order_bd = $pdo->prepare("INSERT INTO `burgers-shop`.orders
 	(`ID пользователя`, Улица, Дом, Корпус, Квартира, Этаж, Комментарий, Оплата, Перезвони)
 	VALUES (:userid, :street, :home, :part, :appt, :floor, :comment, :payment, :callback)");
 	$order_bd->execute([
@@ -119,7 +110,7 @@ if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 
 
 // Проверяем прошедшие заказы
-	$result = $pdo->prepare("SELECT * FROM `order` WHERE `ID пользователя` = :userid");
+	$result = $pdo->prepare("SELECT * FROM orders WHERE `ID пользователя` = :userid");
 	$result->execute([
 		':userid' => $user_id
 	]);
@@ -135,29 +126,29 @@ if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 	echo '</tr>';
 	foreach ($data as $str) {
 		echo '<tr>';
-		// print_r($str);
-		foreach ($str as $value) {
+		foreach ($str as $key => $value) {
 			echo '<td>' . $value . '</td>';
 		}
 		echo '</tr>';
+		$last_order_id = $str['ID заказа'];
 	}
 	echo "</table>";
 
-	$f = 'Спасибо - это ваш первый заказ';
-	$s = 'Спасибо! Это уже 555 заказ';
+//
+	$to = $user_email;
 
-	$str = 'Ваш заказ будет доставлен по адресу: ул. ' .  $_POST['Улица'] . ' ' . $_POST['Дом'] .  $_POST['Корпус'] . ' кв.' .  $_POST['Квартира'] . ' этаж ' .  $_POST['Этаж'];
+	$subject = 'Ваш заказ будет доставлен по адресу: ул. ' . $_POST['Улица'];
+	$subject .= ' ' . $_POST['Дом'] . $_POST['Корпус'] . ' кв.' . $_POST['Квартира'];
+	$subject .= ' этаж ' . $_POST['Этаж'] . ' - заказ №' . $last_order_id;
 
-	$mail = mail("khom.taras@gmail.com", $str, "DarkBeefBurger за 500 рублей, 1 шт");
+	$message = 'DarkBeefBurger за 500 рублей, 1 шт \r\n';
+	$message .= 'Спасибо! Это уже ' . $last_order_id . ' заказ.';
+
+	$mail = mail($to, $subject, $message);
 	if ($mail) {
 		echo "Сообщение принято для доставки проверьте почту.";
 	} else {
 		echo "Произошла какая-то ошибка при отправке.";
-//		Збаразбка 57А кв. 54 этаж 4
 	}
 	die();
 }
-
-//echo "<pre>";
-//print_r($data);
-//print_r($check_data);
