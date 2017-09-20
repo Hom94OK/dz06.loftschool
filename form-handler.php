@@ -134,21 +134,22 @@ if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 	}
 	echo "</table>";
 
+//	require_once __DIR__ . '/mail.php';
+////
+//	$to = $user_email;
 //
-	$to = $user_email;
-
-	$subject = 'Ваш заказ будет доставлен по адресу: ул. ' . $_POST['Улица'];
-	$subject .= ' ' . $_POST['Дом'] . $_POST['Корпус'] . ' кв.' . $_POST['Квартира'];
-	$subject .= ' этаж ' . $_POST['Этаж'] . ' - заказ №' . $last_order_id;
-
-	$message = 'DarkBeefBurger за 500 рублей, 1 шт \r\n';
-	$message .= 'Спасибо! Это уже ' . $last_order_id . ' заказ.';
-
-	$mail = mail($to, $subject, $message);
-	if ($mail) {
-		echo "Сообщение принято для доставки проверьте почту.";
-	} else {
-		echo "Произошла какая-то ошибка при отправке.";
-	}
+//	$subject = 'Ваш заказ будет доставлен по адресу: ул. ' . $_POST['Улица'];
+//	$subject .= ' ' . $_POST['Дом'] . $_POST['Корпус'] . ' кв.' . $_POST['Квартира'];
+//	$subject .= ' этаж ' . $_POST['Этаж'] . ' - заказ №' . $last_order_id;
+//
+//	$message = 'DarkBeefBurger за 500 рублей, 1 шт \r\n';
+//	$message .= 'Спасибо! Это уже ' . $last_order_id . ' заказ.';
+//
+//	$mail = mail($to, $subject, $message);
+//	if ($mail) {
+//		echo "Сообщение принято для доставки проверьте почту.";
+//	} else {
+//		echo "Произошла какая-то ошибка при отправке.";
+//	}
 	die();
 }

@@ -1,2 +1,5 @@
 .idea
 burgers-by-taras.zip
+burgers.zip
+/vendor/
+composer.lock

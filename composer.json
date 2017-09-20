@@ -1,0 +1,12 @@
+{
+    "name": "Hom94ok/burgers",
+    "authors": [
+        {
+            "name": "Hom94ok",
+            "email": "khom.taras@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "v6.0.1"
+    }
+}
