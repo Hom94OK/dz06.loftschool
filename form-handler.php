@@ -134,9 +134,9 @@ if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 	}
 	echo "</table>";
 
-//	require_once __DIR__ . '/mail.php';
+	require_once __DIR__ . '/mail.php';
 ////
-//	$to = $user_email;
+	$to = $user_email;
 //
 //	$subject = 'Ваш заказ будет доставлен по адресу: ул. ' . $_POST['Улица'];
 //	$subject .= ' ' . $_POST['Дом'] . $_POST['Корпус'] . ' кв.' . $_POST['Квартира'];

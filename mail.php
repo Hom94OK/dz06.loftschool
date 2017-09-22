@@ -1,17 +1,18 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 require_once __DIR__ . '/vendor/autoload.php';
 ////
-//$to = $user_email;
+$to = $user_email;
 //
-//$subject = 'Ваш заказ будет доставлен по адресу: ул. ' . $_POST['Улица'];
-//$subject .= ' ' . $_POST['Дом'] . $_POST['Корпус'] . ' кв.' . $_POST['Квартира'];
-//$subject .= ' этаж ' . $_POST['Этаж'] . ' - заказ №' . $last_order_id;
+$subject = 'Ваш заказ будет доставлен по адресу: ул. ' . $_POST['Улица'];
+$subject .= ' ' . $_POST['Дом'] . $_POST['Корпус'] . ' кв.' . $_POST['Квартира'];
+$subject .= ' этаж ' . $_POST['Этаж'] . ' - заказ №' . $last_order_id;
 //
-//$message = 'DarkBeefBurger за 500 рублей, 1 шт \r\n';
-//$message .= 'Спасибо! Это уже ' . $last_order_id . ' заказ.';
+$message = 'DarkBeefBurger за 500 рублей, 1 шт' . PHP_EOL;
+$message .= 'Спасибо! Это уже ' . $last_order_id . ' заказ.';
 //
 //$mail = mail($to, $subject, $message);
 //if ($mail) {
@@ -19,7 +20,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 //} else {
 //	echo "Произошла какая-то ошибка при отправке.";
 //}
-die();
+//die();
 
 $mail = new PHPMailer(true);
 try {
@@ -33,19 +34,20 @@ try {
 	$mail->Port = 465;
 
 	//Recipients
-	$mail->setFrom('tarashomy4ok@gmail.com', 'Vasy');
-	$mail->addAddress('khom.taras@gmail.com', 'Joe User');
-	$mail->addReplyTo('info@example.com', 'Information');
+	$mail->setFrom('tarashomy4ok@gmail.com', 'MR.Burger');
+	$mail->addAddress($_POST['email'], 'Хазяын');
+	$mail->addReplyTo('tarashomy4ok@gmail.com', 'Information');
 
 	//Attachments
 //	$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
 //	$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
 	//Content
+	$mail->CharSet="UTF-8";     // Кодыровка
 	$mail->isHTML(true);
-	$mail->Subject = 'Here is the subjectsss';
-	$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-	$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+	$mail->Subject = $subject;
+	$mail->Body    = $message;
+//	$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 	$mail->send();
 	echo 'Message has been sent';
 } catch (Exception $e) {

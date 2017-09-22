@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/css/vendors.min.css">
     <link rel="stylesheet" href="/css/main.min.css">
     <link rel="stylesheet" href="/css/custom.css">
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 <div class="wrapper">
@@ -530,10 +532,18 @@
                                     </label>
                                 </div>
                                 <div class="order__form-row">
+                                    <div
+                                            class="g-recaptcha"
+                                            data-sitekey="6Lf3izEUAAAAAGpEtHZkaa-pm0efMFTUH_ij4ZbY"
+                                            data-callback="YourOnSubmitFn">
+                                    </div>
+                                </div>
+                                <div class="order__form-row">
                                     <button id="order__form-button" class="order__form-button" type="submit">Заказать</button>
                                     <input class="order__form-button order__form-button_reset" name="" type="reset"
                                            value="Очистить">
                                 </div>
+
                             </div>
                         </div>
                     </form>
