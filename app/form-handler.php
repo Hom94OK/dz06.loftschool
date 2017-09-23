@@ -1,10 +1,7 @@
 <?php
 
-
-//echo "<pre>";
-//print_r($_POST);
-//echo '</pre>';
-require_once("connect-pdo.php");
+require_once __DIR__ . '/../app/recaptcha.php';
+require_once __DIR__ . "/../app/connect-pdo.php";
 
 if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 	empty($_POST['email']) || empty($_POST['Улица']) ||
@@ -134,9 +131,9 @@ if (empty($_POST['Имя']) || empty($_POST['Телефон']) ||
 	}
 	echo "</table>";
 
-	require_once __DIR__ . '/mail.php';
+	require_once __DIR__ . '/../app/mail.php';
 ////
-	$to = $user_email;
+//	$to = $user_email;
 //
 //	$subject = 'Ваш заказ будет доставлен по адресу: ул. ' . $_POST['Улица'];
 //	$subject .= ' ' . $_POST['Дом'] . $_POST['Корпус'] . ' кв.' . $_POST['Квартира'];

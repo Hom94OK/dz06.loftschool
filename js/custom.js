@@ -6,7 +6,7 @@ $("#order__form-button").on("click", function (e) {
 
     $.ajax({
         type: "POST",
-        url: "form-handler.php",
+        url: "/app/form-handler.php",
         data: $(".order__form-tag").serialize() // serializes the form's elements.
     }).done(function (data) {
         $("#f-order").find(".f-popup__content").html(data);

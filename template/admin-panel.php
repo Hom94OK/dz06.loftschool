@@ -10,7 +10,7 @@
 <h1>Адмін панель</h1><br>
 <h2>Список всех зарегистрированных пользователей:</h2>
 <?php
-require_once('connect-pdo.php');
+require_once __DIR__ . '/../app/connect-pdo.php';
 
 $result = $pdo->prepare("SELECT * FROM `burgers-shop`.users");
 $result->execute();

@@ -2,15 +2,36 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+$routes = explode('/', $_SERVER['REQUEST_URI']);
+
+$controller_name = 'index';
+// получаем контроллер
+if (!empty($routes[1])) {
+    $controller_name = $routes[1];
+}
+
+$filename = "template/".strtolower($controller_name).'.twig';
+
+if ($controller_name == 'admin-panel') {
+    require_once __DIR__ . '/template/admin-panel.php';
+    die();
+} elseif (!file_exists($filename)) {
+    echo 'Простите, такой страницы нет.';
+    die();
+}
+
+//echo '<pre>';
+//print_r($controller_name);
+
 /**
  * TWIG
  */
-$loader = new \Twig_Loader_Filesystem('/');
+$loader = new \Twig_Loader_Filesystem(__DIR__.'/template');
 $twig = new \Twig_Environment($loader);
 
 $title = 'Zagolovok';
 
-echo $twig->render('index.html', [
+echo $twig->render($controller_name.'.twig', [
         'title' => $title
 ]);
 
