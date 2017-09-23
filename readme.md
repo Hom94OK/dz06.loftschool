@@ -1,4 +1,4 @@
 ### Markdown
 #### links
-* [Главная страница](dz06.loftschool/)
-* [Адмін панель](dz06.loftschool/admin-panel.php)
+* [Главная страница](http://dz06.loftschool/)
+* [Адмін панель](http://dz06.loftschool/admin-panel)
