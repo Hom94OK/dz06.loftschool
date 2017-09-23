@@ -1,4 +1,4 @@
 ### Markdown
 #### links
-* [Главная страница](http://burgers/admin-panel.php)
-* [Адмін панель](http://burgers/admin-panel.php)
+* [Главная страница](dz06.loftschool/admin-panel.php)
+* [Адмін панель](dz06.loftschool/admin-panel.php)
