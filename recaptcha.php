@@ -1,5 +1,6 @@
 <?php
 require __DIR__."/vendor/autoload.php";
+
 $remoteIp = $_SERVER['REMOTE_ADDR'];
 $gRecaptchaResponse = $_REQUEST['g-recaptcha-response'];
 $recaptcha = new \ReCaptcha\ReCaptcha("6LdFaS0UAAAAAKK8_v2qiYuNf_Cq6BHjo17B_b95");
